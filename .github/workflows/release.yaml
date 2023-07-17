@@ -13,10 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: terraform plan
+        id: plan
+        uses: dflook/terraform-plan@v1
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Plan Output
+        run: echo "${{ steps.plan.outputs.json_plan_path }}"
