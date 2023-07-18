@@ -12,31 +12,23 @@ permissions:
   pull-requests: write
 
 jobs:
-  plan:
-    uses: ./.github/workflows/_tf-plan.yaml
-    with:
-      environment: staging
-
-  apply:
+  apply-staging:
     runs-on: ubuntu-latest
     environment: staging
-    needs: plan
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          auto_approve: true
 
-      # - name: terraform plan
-      #   id: plan
-      #   uses: dflook/terraform-plan@v1
-
-      # - name: Plan Output
-      #   run: echo "${{ steps.plan.outputs.json_plan_path }}"
-
-      # - name: terraform plan
-      #   id: plan
-      #   uses: dflook/terraform-plan@v1
-
-      # - name: terraform apply
-      #   id: apply
-      #   uses: dflook/terraform-apply@v1
+  apply-production:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: apply-staging
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          auto_approve: true
