@@ -12,9 +12,9 @@ permissions:
   pull-requests: write
 
 jobs:
-  environment: staging
   build:
     runs-on: ubuntu-latest
+    environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
