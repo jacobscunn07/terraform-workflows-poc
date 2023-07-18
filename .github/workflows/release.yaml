@@ -16,8 +16,6 @@ jobs:
     uses: ./.github/workflows/_tf-plan.yaml
     with:
       environment: staging
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   apply:
     runs-on: ubuntu-latest
