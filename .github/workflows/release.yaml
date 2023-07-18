@@ -12,29 +12,13 @@ permissions:
   pull-requests: write
 
 jobs:
-  apply-staging:
-    runs-on: ubuntu-latest
-    environment: staging
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v3
+  staging:
+    uses: ./.github/workflows/_tf-apply.yaml
+    with:
+      environment: staging
 
-      - name: terraform apply
-        uses: dflook/terraform-apply@v1
-        with:
-          auto_approve: true
-
-  apply-production:
-    runs-on: ubuntu-latest
-    environment: production
-    needs: apply-staging
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: terraform apply
-        uses: dflook/terraform-apply@v1
-        with:
-          auto_approve: true
+  production:
+    needs: staging
+    uses: ./.github/workflows/_tf-apply.yaml
+    with:
+      environment: staging
