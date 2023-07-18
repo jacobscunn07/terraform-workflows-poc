@@ -1,0 +1,26 @@
+name: Outputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Name of the GitHub Environment'
+        type: environment
+        required: true
+      workspace:
+        description: 'Name of the workspace to view outputs'
+        type: string
+        required: true
+
+jobs:
+  new_workspace:
+    runs-on: ubuntu-latest
+    name: Outputs
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Outputs
+        uses: dflook/terraform-outputs@v1
+        with:
+          workspace: ${{ inputs.workspace }}
