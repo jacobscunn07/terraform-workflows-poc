@@ -12,6 +12,7 @@ permissions:
   pull-requests: write
 
 jobs:
+  environment: staging
   build:
     runs-on: ubuntu-latest
     env:
