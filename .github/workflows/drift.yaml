@@ -1,0 +1,20 @@
+name: Detect Drift
+
+on:
+  schedule:
+    - cron: 0 6 * * *
+
+  workflow_dispatch:
+
+jobs:
+  detect_drift:
+    runs-on: ubuntu-latest
+    name: Detect Drift
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check
+        uses: dflook/terraform-check@v1
+        with:
+          path: terraform
