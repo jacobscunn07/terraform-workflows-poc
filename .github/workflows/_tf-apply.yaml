@@ -6,6 +6,9 @@ on:
       environment:
         required: true
         type: string
+      workspace:
+        type: string
+        default: 'default'
 
 jobs:
   apply:
@@ -20,3 +23,4 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           auto_approve: true
+          workspace: ${{ inputs.workspace }}

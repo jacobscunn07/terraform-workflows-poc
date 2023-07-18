@@ -6,6 +6,9 @@ on:
       environment:
         required: true
         type: string
+      workspace:
+        type: string
+        default: 'default'
 
 jobs:
   plan:
@@ -19,3 +22,5 @@ jobs:
       - name: terraform plan
         id: plan
         uses: dflook/terraform-plan@v1
+        with:
+          workspace: ${{ inputs.workspace }}
