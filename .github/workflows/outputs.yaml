@@ -20,7 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Outputs
+      - name: Get Outputs
+        id: outputs
         uses: dflook/terraform-output@v1
         with:
           workspace: ${{ inputs.workspace }}
+      
+      - name: View Outputs
+        run: |
+          echo "${{ fromJson(steps.outputs.outputs) }}" 
