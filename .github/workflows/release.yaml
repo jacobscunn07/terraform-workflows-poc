@@ -15,7 +15,6 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     environment: staging
-    id: plan
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -38,7 +37,6 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     environment: staging
-    id: apply
     needs: plan
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
