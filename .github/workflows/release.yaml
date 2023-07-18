@@ -12,9 +12,10 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  plan:
     runs-on: ubuntu-latest
     environment: staging
+    id: plan
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -30,6 +31,30 @@ jobs:
       - name: terraform plan
         id: plan
         uses: dflook/terraform-plan@v1
+
+      # - name: terraform apply
+      #   id: apply
+      #   uses: dflook/terraform-apply@v1
+  apply:
+    runs-on: ubuntu-latest
+    environment: staging
+    id: apply
+    needs: plan
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      # - name: terraform plan
+      #   id: plan
+      #   uses: dflook/terraform-plan@v1
+
+      # - name: Plan Output
+      #   run: echo "${{ steps.plan.outputs.json_plan_path }}"
+
+      # - name: terraform plan
+      #   id: plan
+      #   uses: dflook/terraform-plan@v1
 
       # - name: terraform apply
       #   id: apply
