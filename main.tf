@@ -1,4 +1,4 @@
 resource "local_file" "foo" {
-  content  = "foo!"
+  content  = "${ terraform.workspace } foo!!"
   filename = "${path.module}/foo.bar"
 }
