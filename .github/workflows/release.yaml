@@ -13,23 +13,11 @@ permissions:
 
 jobs:
   plan:
-    runs-on: ubuntu-latest
-    environment: staging
-    env:
+    uses: ./.github/workflows/_tf-plan.yaml
+    with:
+      environment: staging
+    secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v3
-
-      # - name: terraform plan
-      #   id: plan
-      #   uses: dflook/terraform-plan@v1
-
-      - name: terraform plan
-        uses: ./.github/workflows/_tf-plan.yaml
-        with:
-          environment: staging
-        secrets:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   apply:
     runs-on: ubuntu-latest
