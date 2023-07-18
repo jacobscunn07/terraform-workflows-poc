@@ -21,4 +21,4 @@ jobs:
     needs: staging
     uses: ./.github/workflows/_tf-apply.yaml
     with:
-      environment: staging
+      environment: production
