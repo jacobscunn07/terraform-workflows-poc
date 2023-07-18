@@ -1,0 +1,24 @@
+name: _tf-plan
+
+on:
+  workflow_call:
+    inputs: 
+      environment:
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: terraform plan
+        id: plan
+        uses: dflook/terraform-plan@v1
