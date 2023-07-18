@@ -16,5 +16,3 @@ jobs:
 
       - name: Check
         uses: dflook/terraform-check@v1
-        with:
-          path: terraform
