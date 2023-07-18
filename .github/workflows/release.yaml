@@ -26,6 +26,10 @@ jobs:
       # - name: Plan Output
       #   run: echo "${{ steps.plan.outputs.json_plan_path }}"
 
-      - name: terraform apply
-        id: apply
-        uses: dflook/terraform-apply@v1
+      - name: terraform plan
+        id: plan
+        uses: dflook/terraform-plan@v1
+
+      # - name: terraform apply
+      #   id: apply
+      #   uses: dflook/terraform-apply@v1
