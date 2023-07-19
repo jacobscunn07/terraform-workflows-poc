@@ -1,5 +1,7 @@
 name: Release
 
+concurrency: terraform-lock
+
 on:
   push:
     branches:
