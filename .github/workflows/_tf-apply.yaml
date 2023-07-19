@@ -38,7 +38,7 @@ jobs:
       - name: terraform apply
         uses: dflook/terraform-apply@v1
         with:
-          # auto_approve: true
+          auto_approve: true
           workspace: ${{ inputs.workspace }}
           var_file: |
             ${{ inputs.workspace }}.tfvars
