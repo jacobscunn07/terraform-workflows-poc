@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       workspace:
+        description: 'Name of the terraform workspace'
         type: string
-        default: 'default'
+        required: true
       lock_id:
-        description: "Lock ID to be unlocked"
+        description: 'Lock ID to be unlocked'
         required: true
 
 jobs:
