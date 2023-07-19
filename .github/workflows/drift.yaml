@@ -12,7 +12,7 @@ jobs:
     with:
       environment: staging
 
-  production:
-    uses: ./.github/workflows/_tf-detect-drift.yaml
-    with:
-      environment: production
+  # production:
+  #   uses: ./.github/workflows/_tf-detect-drift.yaml
+  #   with:
+  #     environment: production
