@@ -10,7 +10,41 @@ permissions:
   pull-requests: write
 
 jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          workspace: default
+
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: terraform validate
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          workspace: default
+
   plan:
-    uses: ./.github/workflows/_tf-plan.yaml
-    with:
-      environment: staging
+    runs-on: ubuntu-latest
+    needs:
+      - fmt
+      - validate
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          workspace: default
