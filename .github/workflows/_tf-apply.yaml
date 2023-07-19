@@ -24,7 +24,7 @@ jobs:
           add_github_comment: false
           workspace: ${{ inputs.workspace }}
           var_file: |
-            ${{ inputs.workspace }}.tfvars
+            ./vars/${{ inputs.workspace }}.tfvars
 
   apply:
     runs-on: ubuntu-latest
@@ -41,4 +41,4 @@ jobs:
           auto_approve: true
           workspace: ${{ inputs.workspace }}
           var_file: |
-            ${{ inputs.workspace }}.tfvars
+            ./vars/${{ inputs.workspace }}.tfvars
