@@ -1,5 +1,7 @@
 name: Destroy
 
+concurrency: terraform-lock
+
 on:
   workflow_dispatch:
     inputs:

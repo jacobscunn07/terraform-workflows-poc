@@ -1,5 +1,7 @@
 name: Detect Drift
 
+concurrency: terraform-lock
+
 on:
   schedule:
     - cron: 0 6 * * *

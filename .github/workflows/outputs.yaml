@@ -1,5 +1,7 @@
 name: Outputs
 
+concurrency: terraform-lock
+
 on:
   workflow_dispatch:
     inputs:
