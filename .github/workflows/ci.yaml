@@ -20,7 +20,7 @@ jobs:
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
         with:
-          workspace: default
+          workspace: staging
 
   validate:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
       - name: terraform validate
         uses: dflook/terraform-fmt-check@v1
         with:
-          workspace: default
+          workspace: staging
 
   plan:
     runs-on: ubuntu-latest
@@ -47,4 +47,4 @@ jobs:
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
-          workspace: default
+          workspace: staging

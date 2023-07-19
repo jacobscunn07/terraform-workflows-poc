@@ -16,9 +16,11 @@ jobs:
     uses: ./.github/workflows/_tf-apply.yaml
     with:
       environment: staging
+      workspace: staging
 
   production:
     needs: staging
     uses: ./.github/workflows/_tf-apply.yaml
     with:
       environment: production
+      workspace: production
