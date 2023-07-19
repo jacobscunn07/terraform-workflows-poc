@@ -21,8 +21,6 @@ jobs:
         uses: dflook/terraform-fmt-check@v1
         with:
           workspace: staging
-          var_file: |
-            staging.tfvars
 
   validate:
     runs-on: ubuntu-latest
@@ -35,8 +33,6 @@ jobs:
         uses: dflook/terraform-fmt-check@v1
         with:
           workspace: staging
-          var_file: |
-            staging.tfvars
 
   plan:
     runs-on: ubuntu-latest
