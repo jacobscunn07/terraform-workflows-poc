@@ -17,6 +17,8 @@ jobs:
     with:
       environment: staging
       workspace: staging
+      var_file: |
+        staging.tfvars
 
   production:
     needs: staging
@@ -24,3 +26,5 @@ jobs:
     with:
       environment: production
       workspace: production
+      var_file: |
+        production.tfvars

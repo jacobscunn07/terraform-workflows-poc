@@ -11,8 +11,12 @@ jobs:
     uses: ./.github/workflows/_tf-detect-drift.yaml
     with:
       workspace: staging
+      var_file: |
+        staging.tfvars
 
   production:
     uses: ./.github/workflows/_tf-detect-drift.yaml
     with:
       workspace: production
+      var_file: |
+        production.tfvars

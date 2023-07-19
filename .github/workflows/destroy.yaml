@@ -25,3 +25,5 @@ jobs:
         uses: dflook/terraform-destroy@v1
         with:
           workspace: ${{ inputs.workspace }}
+          var_file: |
+            ${{ inputs.workspace }}.tfvars

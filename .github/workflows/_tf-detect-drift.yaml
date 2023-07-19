@@ -20,3 +20,5 @@ jobs:
         uses: dflook/terraform-check@v1
         with:
           workspace: ${{ inputs.workspace }}
+          var_file: |
+            ${{ inputs.workspace }}.tfvars
