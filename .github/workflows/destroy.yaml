@@ -28,4 +28,4 @@ jobs:
         with:
           workspace: ${{ inputs.workspace }}
           var_file: |
-            ${{ inputs.workspace }}.tfvars
+            ./vars/${{ inputs.workspace }}.tfvars

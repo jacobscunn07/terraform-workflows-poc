@@ -52,4 +52,4 @@ jobs:
           add_github_comment: false
           workspace: staging
           var_file: |
-            staging.tfvars
+            ./vars/staging.tfvars
