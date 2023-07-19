@@ -12,7 +12,7 @@ permissions:
 jobs:
   fmt:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -21,11 +21,11 @@ jobs:
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
         with:
-          workspace: ${{ inputs.workspace }}
+          workspace: default
 
   validate:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -34,11 +34,11 @@ jobs:
       - name: terraform validate
         uses: dflook/terraform-fmt-check@v1
         with:
-          workspace: ${{ inputs.workspace }}
+          workspace: default
 
   plan:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: staging
     needs:
       - fmt
       - validate
@@ -50,4 +50,4 @@ jobs:
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
-          workspace: ${{ inputs.workspace }}
+          workspace: default
