@@ -3,6 +3,9 @@ name: Unlock
 on:
   workflow_dispatch:
     inputs:
+      workspace:
+        type: string
+        default: 'default'
       lock_id:
         description: "Lock ID to be unlocked"
         required: true
@@ -16,4 +19,5 @@ jobs:
       - name: Unlock
         uses: dflook/terraform-unlock-state@v1
         with:
+          workspace: ${{ inputs.workspace }}
           lock_id: ${{ inputs.lock_id }}
