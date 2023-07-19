@@ -12,7 +12,6 @@ permissions:
 jobs:
   fmt:
     runs-on: ubuntu-latest
-    environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -25,7 +24,6 @@ jobs:
 
   validate:
     runs-on: ubuntu-latest
-    environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -38,7 +36,6 @@ jobs:
 
   plan:
     runs-on: ubuntu-latest
-    environment: staging
     needs:
       - fmt
       - validate
