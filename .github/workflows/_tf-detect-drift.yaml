@@ -3,9 +3,6 @@ name: _tf-detect-drift
 on:
   workflow_call:
     inputs: 
-      environment:
-        required: true
-        type: string
       workspace:
         type: string
         default: 'default'
@@ -13,7 +10,6 @@ on:
 jobs:
   detect_drift:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
