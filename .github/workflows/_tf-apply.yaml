@@ -24,3 +24,5 @@ jobs:
         with:
           auto_approve: true
           workspace: ${{ inputs.workspace }}
+          var_file: |
+            ${{ inputs.workspace }}.tfvars
