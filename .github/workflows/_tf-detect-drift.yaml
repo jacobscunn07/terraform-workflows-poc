@@ -1,0 +1,26 @@
+name: _tf-detect-drift
+
+on:
+  workflow_call:
+    inputs: 
+      environment:
+        required: true
+        type: string
+      workspace:
+        type: string
+        default: 'default'
+
+jobs:
+  detect_drift:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check
+        uses: dflook/terraform-check@v1
+        with:
+          workspace: ${{ inputs.workspace }}
