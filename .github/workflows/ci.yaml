@@ -47,6 +47,7 @@ jobs:
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
+          add_github_comment: false
           workspace: staging
           var_file: |
             staging.tfvars
