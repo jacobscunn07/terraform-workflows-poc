@@ -19,8 +19,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          workspace: ${{ inputs.workspace }}
+
+      - name: terraform validate
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          workspace: ${{ inputs.workspace }}
+
       - name: terraform plan
-        id: plan
         uses: dflook/terraform-plan@v1
         with:
           workspace: ${{ inputs.workspace }}
