@@ -30,7 +30,7 @@ jobs:
       - name: Upload Plan
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ inputs.environment }}-plan.out
+          name: ${{ inputs.workspace }}-plan.out
           path: plan.out
 
   apply:
@@ -44,7 +44,7 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: ${{ inputs.environment }}-plan.out
+          name: ${{ inputs.workspace }}-plan.out
 
       - uses: hashicorp/setup-terraform@v2
         with:
@@ -53,5 +53,5 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform init && \
-          terraform workspace select -or-create ${{ inputs.environment }} \
+          terraform workspace select -or-create ${{ inputs.workspace }} \
           && terraform apply plan.out
