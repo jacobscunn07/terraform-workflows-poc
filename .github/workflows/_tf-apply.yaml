@@ -44,6 +44,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.environment }}-plan.out
+          path: plan.out
 
       - uses: hashicorp/setup-terraform@v2
         with:
