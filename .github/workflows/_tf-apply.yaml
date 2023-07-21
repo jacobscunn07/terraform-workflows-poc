@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TERRAFORM_PRE_RUN: ln -s /github/workspace/plan.out /tmp/plan.out 
     steps:
       - uses: actions/checkout@v3
 
@@ -26,6 +27,11 @@ jobs:
           var_file: |
             ./vars/${{ inputs.workspace }}.tfvars
 
+      - name: Upload Plan
+        uses: actions/upload-artifact@v3
+        with:
+          name: plan.out
+          path: plan.out
   apply:
     runs-on: ubuntu-latest
     needs: plan
@@ -35,10 +41,30 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: terraform apply
-        uses: dflook/terraform-apply@v1
+      - uses: actions/download-artifact@v3
         with:
-          auto_approve: true
-          workspace: ${{ inputs.workspace }}
-          var_file: |
-            ./vars/${{ inputs.workspace }}.tfvars
+          name: plan.out
+
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.6
+
+      - name: Terraform Apply
+        run: terraform init && terraform apply plan.out
+        
+  # apply:
+  #   runs-on: ubuntu-latest
+  #   needs: plan
+  #   environment: ${{ inputs.environment }}
+  #   env:
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: terraform apply
+  #       uses: dflook/terraform-apply@v1
+  #       with:
+  #         auto_approve: true
+  #         workspace: ${{ inputs.workspace }}
+  #         var_file: |
+  #           ./vars/${{ inputs.workspace }}.tfvars
