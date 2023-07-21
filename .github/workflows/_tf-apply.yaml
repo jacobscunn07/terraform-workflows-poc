@@ -50,8 +50,8 @@ jobs:
           terraform_version: 1.4.6
 
       - name: Terraform Apply
-        run: terraform init && terraform apply plan.out
-        
+        run: terraform init && terraform workspace select ${{ inputs.environment }} && terraform apply plan.out
+
   # apply:
   #   runs-on: ubuntu-latest
   #   needs: plan
