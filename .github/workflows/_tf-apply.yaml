@@ -52,7 +52,7 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform init && \
-          terraform workspace select ${{ inputs.environment }} -or-create=true \
+          terraform workspace select -or-create ${{ inputs.environment }} \
           && terraform apply plan.out
 
   # apply:
