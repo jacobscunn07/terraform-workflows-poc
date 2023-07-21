@@ -14,16 +14,16 @@ permissions:
   pull-requests: write
 
 jobs:
-  
+
   staging:
-    uses: ./.github/workflows/_tf-apply.yaml
+    uses: ./.github/workflows/_tf-release.yaml
     with:
       environment: staging
       workspace: staging
 
   production:
     needs: staging
-    uses: ./.github/workflows/_tf-apply.yaml
+    uses: ./.github/workflows/_tf-release.yaml
     with:
       environment: production
       workspace: production
