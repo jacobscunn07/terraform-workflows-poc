@@ -1,4 +1,4 @@
-name: _tf-plan
+name: _tf-release
 
 on:
   workflow_call:
@@ -14,7 +14,6 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TERRAFORM_PRE_RUN: ln -s /github/workspace/plan.out /tmp/plan.out 
     steps:
       - uses: actions/checkout@v3
@@ -37,8 +36,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: plan
     environment: ${{ inputs.environment }}
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
 
